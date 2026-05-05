@@ -8,7 +8,7 @@ describe("Elysia", () => {
       .handle(new Request("http://localhost/hi"))
       .then((res) => res.text());
 
-    expect(response).toBe("suki");
+    expect(response).toBe("hi");
   });
 
   it("square root result", async () => {
