@@ -14,5 +14,7 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: install depedency
         run: bun install
+      - name: lint & quality code
+        run: bun lint
       - name: testing
         run: bun test
