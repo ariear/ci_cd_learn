@@ -1,7 +1,5 @@
 import { Elysia } from "elysia";
 
-const suki = "Suki liar"
-
 export const app = new Elysia()
   .get("/", () => "Hello Elysia")
   .get("/sqrt/:id", ({ params: { id } }) => Number(id) ** 2)
