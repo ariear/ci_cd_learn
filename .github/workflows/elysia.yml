@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  setup:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,11 +14,6 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: install depedency
         run: bun install
-
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - name: lint & quality code
         run: bun lint
 
@@ -26,5 +21,10 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
+      - name: install depedency
+        run: bun install
       - name: testing
         run: bun test
