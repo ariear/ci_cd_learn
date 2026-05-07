@@ -1,0 +1,26 @@
+name: deploy-ke-vps
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  deploying:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy project ke VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: | 
+            if [ -d translations-manager ]; then
+              cd ci_cd_learn
+              git pull --rebase -Xours
+            else
+              git clone git@github.com:ariear/ci_cd_learn.git
+              cd ci_cd_learn
+            fi
