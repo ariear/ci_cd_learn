@@ -4,6 +4,13 @@ export const app = new Elysia()
   .get("/", () => "Hello Elysia")
   .get("/sqrt/:id", ({ params: { id } }) => Number(id) ** 2)
   .get("/:slug", ({ params: { slug } }) => slug)
+  .post("/test/webhook", ({ body }) => {
+    console.log(body);
+
+    return {
+      message: "webhook receiver udah dapet data nih",
+    };
+  })
   .listen(4000);
 
 console.log(
